@@ -38,6 +38,11 @@ steps:
     command: 'build'
     arguments: '--no-restore --configuration Release'
     projects: '**/*.csproj'
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(agent.builddirectory)\s\WebApplication1\bin\Release\netcoreapp2.1'
+    Contents: '**'
+    TargetFolder: '$(build.artifactstagingdirectory)\appdir'
 - task: DotNetCoreCLI@2
   inputs:
     command: 'publish'
